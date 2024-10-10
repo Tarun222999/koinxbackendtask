@@ -15,7 +15,7 @@ connectDB()
 app.get("/", async (req, res) => {
     return res.json({
         routesAvailable: [
-            "/api/stats", "api/deviation"
+            "/api/stats", "/api/deviation"
         ]
     })
 })

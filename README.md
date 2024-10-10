@@ -1,7 +1,17 @@
 
+1.Deployemnt Link: https://koinxbackendtask-production.up.railway.app/
 
+
+2.Postman Collection Link:https://elements.getpostman.com/redirect?entityId=25926850-fe2a2f58-34bb-4587-ba83-332b50bc8612&entityType=collection
+
+
+
+3.Postman API Link: https://api.postman.com/collections/25926850-fe2a2f58-34bb-4587-ba83-332b50bc8612?access_key=PMAT-01J9TNJ5S83THJQBMG32G8VA2A
 
   A server side application using Node.js and MongoDB 
+
+  
+![diagram-export-10-10-2024-12_51_04-PM](https://github.com/user-attachments/assets/2291f308-6037-4738-95bb-2f340b34f134)
 
 
 ## Features

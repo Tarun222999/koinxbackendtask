@@ -3,6 +3,9 @@
 
   A server side application using Node.js and MongoDB 
 
+  
+![diagram-export-10-10-2024-12_51_04-PM](https://github.com/user-attachments/assets/2291f308-6037-4738-95bb-2f340b34f134)
+
 
 ## Features
 

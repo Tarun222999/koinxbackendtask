@@ -13,8 +13,6 @@ const PORT = process.env.PORT || 8000
 connectDB()
 
 app.get("/", async (req, res) => {
-
-
     return res.json({
         routesAvailable: [
             "/api/stats", "api/deviation"

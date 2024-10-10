@@ -14,11 +14,11 @@ connectDB()
 
 app.get("/", async (req, res) => {
 
-    // Example usage
 
-    const data = await getCoinData('bitcoin');
     return res.json({
-        data
+        routesAvailable: [
+            "/api/stats", "api/deviation"
+        ]
     })
 })
 app.use("/api", statRouter);
@@ -29,8 +29,8 @@ app.listen(PORT, () => {
 })
 
 
-// Set up the cron job to run every 2 minutes
-cron.schedule('*/10 * * * *', () => {
+// Set up the cron job to run every 2 hours
+cron.schedule('0 */2 * * *', () => {
     console.log('Fetching data for Bitcoin, Matic Network, and Ethereum...');
 
     fetchAndStoreData('bitcoin');

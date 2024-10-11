@@ -3,17 +3,22 @@ import dotenv from 'dotenv';
 dotenv.config()
 
 import connectDB from "./db/dbConfig.js";
-import { redis } from "./db/redisConfig.js"
 import statRouter from './routes/statRouter.js';
 import cron from 'node-cron';
-import { scheduleCryptoJobs } from "./jobs/scheduler/jobScheduler.js";
+import { fetchAndStoreData } from "./utils/storeStats.js";
+// import { redis } from "./db/redisConfig.js"
+// import './jobs/workers/cryptoWorker.js'
+// import { scheduleCryptoJobs } from "./jobs/scheduler/jobScheduler.js";
+
+
+
 
 
 
 const app = express()
 const PORT = process.env.PORT || 8000
 
-import './jobs/workers/cryptoWorker.js'
+
 
 connectDB()
 
@@ -26,12 +31,19 @@ app.get("/", async (req, res) => {
 })
 app.use("/", statRouter);
 
-// // Set up the cron job to run every 2 hours
+
+//disabling bullmq as its maxing out redis requests
+// // // Set up the cron job to run every 2 hours
+// cron.schedule('0 */2 * * *', () => {
+//     scheduleCryptoJobs();
+// });
+
 cron.schedule('0 */2 * * *', () => {
-    scheduleCryptoJobs();
+    console.log('Fetching data for Bitcoin, Matic Network, and Ethereum...');
+    fetchAndStoreData('bitcoin');
+    fetchAndStoreData('matic-network');
+    fetchAndStoreData('ethereum');
 });
-
-
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT}`)
 })

@@ -20,11 +20,11 @@ connectDB()
 app.get("/", async (req, res) => {
     return res.json({
         routesAvailable: [
-            "/api/stats", "/api/deviation"
+            "/stats", "/deviation"
         ]
     })
 })
-app.use("/api", statRouter);
+app.use("/", statRouter);
 
 // // Set up the cron job to run every 2 hours
 cron.schedule('0 */2 * * *', () => {

@@ -1,14 +1,19 @@
 import express from "express";
 import dotenv from 'dotenv';
-import { getCoinData } from "./utils/coingeckoApi.js";
-import connectDB from "./db/dbConfig.js";
-import cron from 'node-cron';
-import { fetchAndStoreData } from "./utils/storeStats.js";
-import statRouter from './routes/statRouter.js'
 dotenv.config()
+
+import connectDB from "./db/dbConfig.js";
+import { redis } from "./db/redisConfig.js"
+import statRouter from './routes/statRouter.js';
+import cron from 'node-cron';
+import { scheduleCryptoJobs } from "./jobs/scheduler/jobScheduler.js";
+
+
 
 const app = express()
 const PORT = process.env.PORT || 8000
+
+import './jobs/workers/cryptoWorker.js'
 
 connectDB()
 
@@ -21,17 +26,17 @@ app.get("/", async (req, res) => {
 })
 app.use("/api", statRouter);
 
+// // Set up the cron job to run every 2 hours
+cron.schedule('0 */2 * * *', () => {
+    scheduleCryptoJobs();
+});
+
 
 app.listen(PORT, () => {
     console.log(`server is running on ${PORT}`)
 })
 
 
-// Set up the cron job to run every 2 hours
-cron.schedule('0 */2 * * *', () => {
-    console.log('Fetching data for Bitcoin, Matic Network, and Ethereum...');
 
-    fetchAndStoreData('bitcoin');
-    fetchAndStoreData('matic-network');
-    fetchAndStoreData('ethereum');
-});
+
+

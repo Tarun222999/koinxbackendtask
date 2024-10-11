@@ -1,4 +1,5 @@
 
+## Links **
 1.Deployemnt Link: https://koinxbackendtask-production.up.railway.app/
 
 
@@ -10,7 +11,12 @@
 
   A server side application using Node.js and MongoDB 
 
-  
+## Architecture
+
+![diagram-export-10-11-2024-11_09_13-AM](https://github.com/user-attachments/assets/6ac86004-6971-49e6-8ea0-bc6c9178a977)
+
+
+
 ![diagram-export-10-10-2024-12_51_04-PM](https://github.com/user-attachments/assets/2291f308-6037-4738-95bb-2f340b34f134)
 
 
